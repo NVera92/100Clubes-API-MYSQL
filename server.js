@@ -22,7 +22,7 @@ app.get('/',(req,res) =>{
     res.send('Welcome to my API');
 })
 
-app.use('/api',routes)
+app.use('/100clubes',routes)
 
 
 // server running ---------------------
