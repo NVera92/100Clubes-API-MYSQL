@@ -27,13 +27,24 @@ routes.get('/id',(req,res)=>{
 })
 
 
-routes.get('/name',(req,res)=>{
+routes.get('/nombre',(req,res)=>{
     req.getConnection((err,conn)=>{
         if(err) return res.send(err)
 
-        conn.query("SELECT * FROM club WHERE nombre LIKE '%"+req.query.name+"%'",(err,row)=>{
+        conn.query("SELECT * FROM club WHERE nombre LIKE '%"+req.query.nombre+"%'",(err,row)=>{
             if(err) return res.send(err)
             res.json(row)
+        })
+    })
+})
+
+routes.get('/barrio',(req,res)=>{
+    req.getConnection((err,conn)=>{
+        if(err) return res.send(err)
+
+        conn.query('CALL obtenerClubesBarrio(?)',req.query.barrio,(err,rows)=>{
+            if(err) return res.send(err)
+            res.json(rows)
         })
     })
 })
