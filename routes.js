@@ -59,4 +59,16 @@ routes.get('/actividades',(req,res)=>{
         })
     })
 })
+
+
+routes.get('/activo',(req,res)=>{
+    req.getConnection((err,conn)=>{
+        if(err) return res.send(err)
+
+        conn.query('SELECT * FROM club WHERE activo = 1',(err,rows)=>{
+            if(err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
 module.exports = routes
