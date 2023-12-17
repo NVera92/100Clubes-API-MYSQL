@@ -26,7 +26,6 @@ routes.get('/id',(req,res)=>{
     })
 })
 
-
 routes.get('/nombre',(req,res)=>{
     req.getConnection((err,conn)=>{
         if(err) return res.send(err)
