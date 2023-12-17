@@ -15,7 +15,6 @@ routes.get('/',(req,res)=>{
 })
 
 routes.get('/id',(req,res)=>{
-    console.log(req.query.id)
     req.getConnection((err,conn)=>{
         if(err) return res.send(err)
 
@@ -27,4 +26,14 @@ routes.get('/id',(req,res)=>{
     })
 })
 
+routes.get('/name',(req,res)=>{
+    req.getConnection((err,conn)=>{
+        if(err) return res.send(err)
+
+        conn.query("SELECT * FROM club WHERE nombre LIKE '%"+req.query.name+"%'",(err,row)=>{
+            if(err) return res.send(err)
+            res.json(row)
+        })
+    })
+})
 module.exports = routes
