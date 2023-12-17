@@ -71,4 +71,15 @@ routes.get('/activo',(req,res)=>{
         })
     })
 })
+
+routes.get('/inactivo',(req,res)=>{
+    req.getConnection((err,conn)=>{
+        if(err) return res.send(err)
+
+        conn.query('SELECT * FROM club WHERE activo = 0',(err,rows)=>{
+            if(err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
 module.exports = routes
